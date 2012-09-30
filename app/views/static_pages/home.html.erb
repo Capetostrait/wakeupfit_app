@@ -1,2 +1,20 @@
-<h1>StaticPages#home</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
+<head>
+    <title><%= full_title(yield(:title)) %></title>
+     <%= stylesheet_link_tag    "application", media: "all" %>
+     <%= javascript_include_tag "application" %>
+     <%= csrf_meta_tags %>
+     <!--[if lt IE 9]>
+     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+     <![endif]-->
+ </head>
+
+<div class="center hero-unit">
+  <h1>Wake Up Fit</h1>
+
+  <h2>Your goals don't stop at the end of the class</h2>
+
+  <%= link_to "Sign up now!", '#', class: "btn btn-large btn-primary" %>
+</div>
+
+<%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
+  

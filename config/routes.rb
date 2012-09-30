@@ -1,10 +1,16 @@
 StrongFriendsApp::Application.routes.draw do
 
-  get "static_pages/gidday"
-
-  get "static_pages/contact"
+  root to: 'static_pages#home'
   
-  get "static_pages/faq"
+  match '/contact',    to: 'static_pages#contact'
+
+  # get "static_pages/contact"
+  match '/faq',        to: 'static_pages#faq'
+  #get "static_pages/faq"
+  
+  match '/about',    to: 'static_pages#about'
+  
+  #get "static_pages/about"
   
 
   # The priority is based upon order of creation:

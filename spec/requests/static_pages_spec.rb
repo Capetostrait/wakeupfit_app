@@ -1,61 +1,38 @@
-require'spec_helper'
+require 'spec_helper'
 
 describe "Static pages" do
-  
-  let(:base_title) { "Strong Friends" }
+
+  subject { page }
   #
   describe "Home page" do
-    ##
-    it "should have the h1 'Strong Friends'" do
-      visit '/static_pages/gidday'
-      page.should have_selector('h1', :text => 'Strong Friends')
-    end
-  
-  
-    it "should have the base title" do
-      visit '/static_pages/gidday'
-      page.should have_selector('title', 
-                            :text => "Strong Friends")
-    end
+    before { visit root_path }
     
-    it "should not have a custom page title" do
-      visit '/static_pages/gidday'
-      page.should_not have_selector('title', :text => '| Gidday')
-    end
-    ##
+    it { should have_selector('h1',    text: 'Wake Up Fit') }
+    it { should have_selector('title', text: full_title('')) }
+    it { should_not have_selector 'title', text: '| Home' }
   end
   
-  
   ##
-  describe "Contact Us" do 
+  describe "Contact page" do 
+    before { visit contact_path }
     
-    it "should have the h1 'Contact Us'" do
-      visit '/static_pages/contact'
-      page.should have_selector('h1', :text => 'Contact Us')
-    end
-
-    it "should have the title 'Contact Us'" do
-      visit '/static_pages/contact'
-      page.should have_selector('title',
-                        :text => "#{base_title} | Contact Us")
-    end
-  ##  
+    it { should have_selector('h1',     text: 'Contact Us') }
+    it { should have_selector('title',  text: full_title('Contact Us')) }
   end
     
   ##
-  describe "FAQ" do
-
-      it "should have the h1 'FAQ" do
-        visit '/static_pages/faq'
-        page.should have_selector('h1', :text => "FAQ")
-      end
-      
-      it "should have the title 'FAQ'" do
-        visit '/static_pages/faq'
-        page.should have_selector('title',
-                          :text => "#{base_title} | FAQ")
-      end
-    ##  
+  describe "FAQ page" do
+    before { visit faq_path }
+    
+    it { should have_selector('h1',     text: 'FAQ') }
+    it { should have_selector('title',  text: full_title('FAQ')) }
+  end
+  
+  ##
+  describe "About page" do
+    before { visit about_path }
+      it { should have_selector('h1',     text: 'About Me') }
+      it { should have_selector('title',  text: full_title('About Me')) }
   end
   #
 end
