@@ -1,21 +1,32 @@
 require'spec_helper'
 
 describe "Static pages" do
+  
+  let(:base_title) { "Strong Friends" }
   #
-  describe  "Home page" do
-
-    it "should have the h1 'Strong Friend'" do
+  describe "Home page" do
+    ##
+    it "should have the h1 'Strong Friends'" do
       visit '/static_pages/gidday'
-      page.should have_selector('h1', :text => 'Strong Friend')
+      page.should have_selector('h1', :text => 'Strong Friends')
+    end
+  
+  
+    it "should have the base title" do
+      visit '/static_pages/gidday'
+      page.should have_selector('title', 
+                            :text => "Strong Friends")
     end
     
-    it "should have the title 'gidday'" do
+    it "should not have a custom page title" do
       visit '/static_pages/gidday'
-      page.should have_selector('title',
-              :text => "Strong Friend | Gidday")
+      page.should_not have_selector('title', :text => '| Gidday')
     end
+    ##
   end
-  ###
+  
+  
+  ##
   describe "Contact Us" do 
     
     it "should have the h1 'Contact Us'" do
@@ -26,22 +37,25 @@ describe "Static pages" do
     it "should have the title 'Contact Us'" do
       visit '/static_pages/contact'
       page.should have_selector('title',
-                        :text => "Strong Friend | Contact Us")
+                        :text => "#{base_title} | Contact Us")
     end
-  end  
-  ###
-  describe "FAQ's" do
+  ##  
+  end
+    
+  ##
+  describe "FAQ" do
 
-      it "should have the h1 'FAQ's'" do
+      it "should have the h1 'FAQ" do
         visit '/static_pages/faq'
-        page.should have_selector('h1', :text => "FAQ's")
+        page.should have_selector('h1', :text => "FAQ")
       end
       
-      it "should have the title 'FAQ's'" do
+      it "should have the title 'FAQ'" do
         visit '/static_pages/faq'
         page.should have_selector('title',
-                          :text => "Strong Friend | FAQ's")
+                          :text => "#{base_title} | FAQ")
       end
+    ##  
   end
   #
 end
